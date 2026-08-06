@@ -1,0 +1,84 @@
+{%- set image_data_queries = {
+    "Plane Geometry": "geometry diagram triangle circle angles shaded area labels",
+    "Function Graphs": "coordinate plane function plot parabola sine wave intersection",
+    "Solid Geometry": "3D geometric shapes cylinder cone sphere volume diagram",
+    "Statistical Charts": "bar chart histogram pie graph data interpretation math problem",
+    "Discrete/Logic": "Venn diagram set theory number line grid path visual logic",
+    "Abstract Puzzles": "abstract logic puzzle matrix pattern completion non-verbal reasoning",
+    "Flowcharts & Circuits": "logic gate diagram flowchart decision tree sequence schematic",
+    "Spatial Reasoning": "3D cube rotation spatial visualization folding net mental rotation",
+    "Complex Infographics": "multivariate infographic trend analysis causal relationship chart",
+    "Visual Paradoxes": "logical anomaly visual paradox physics violation contradictory scene",
+    "Plane Geometry_2": "geometry problem with auxiliary lines tangent circles inscribed polygons",
+    "Analytic Geometry": "cartesian plane multiple function plots intersection derivative graph",
+    "Solid Geometry_2": "solid geometry cross-section prism pyramid spatial vector diagram",
+    "Stats & Probability": "histogram box plot probability distribution chart data extraction",
+    "Numerical & Visual Puzzles": "visual arithmetic puzzle block stacking math number patterns",
+    "Competition Geometry": "Olympiad math geometry problem complex shaded region nested circles",
+    "3D Analytic Geometry": "3D coordinate system plane intersection quadric surface spatial analytic geometry",
+    "Math Art & Fractals": "fractal pattern Sierpinski triangle recursive math visualization",
+    "Combinatorics & Grids": "grid coloring problem graph theory nodes and edges combinatorics diagram",
+    "Real-world Modeling": "mathematical modeling sketch parabolic arch physical forces diagram",
+    "Statistical Charts_2": "complex statistical chart box plot radar chart heatmap multiple data series",
+    "Scientific Diagrams": "scientific illustration physics mechanics diagram biology cycle chemical formula",
+    "Practical Math": "real-world photo analog clock reading menu price list street sign geometry",
+    "Tabular Images": "data table screenshot document table rows and columns numerical spreadsheet",
+    "Maps & Spatial": "map with scale floor plan navigation route spatial reasoning diagram",
+    "Hierarchical Geometry": "hierarchical geometry multi-step reasoning nested shapes circle and triangle properties",
+    "Logical Reasoning Sequences": "step-by-step logic sequence geometric transformation pattern induction math puzzle",
+    "Visual Algebra": "visual algebraic equation balance scale math problem area model for algebra",
+    "Discrete Math Diagrams": "counting principle diagram probability tree permutation and combination visual",
+    "Pre-calculus Graphs": "calculus concept graph function extrema area under curve derivative visualization",
+    "Coarse Perception": "main object identification global scene description natural images indoor/outdoor",
+    "Fine-grained Perception": "small text recognition zoomed-in detail attribute identification fine-grained markers",
+    "Instance Reasoning": "object interaction counting in complex scenes spatial relationship left/right/behind",
+    "Logical Reasoning": "visual logic sequence flowchart analysis causal inference from image",
+    "Science & Technology": "scientific diagram lab equipment anatomy chart engineering schematic technology visualize",
+    "Mathematics": "mathematical problem diagram geometry chart data extraction calculus plot",
+    "Driving/Traffic": "dashcam view traffic lights pedestrian crossing road markings vehicle perspective",
+    "Spatial Relations": "objects on a desk spatial arrangement relative position left right above behind",
+    "Dimension Comparison": "comparing sizes of two objects scale perspective physical dimension comparison",
+    "Everyday Environments": "supermarket shelf grocery items living room layout household object identification",
+    "Physical World": "physical world logic shadow direction occlusion object permanence real-world physics",
+    "Scale Readings": "reading scale protractor ruler graduated cylinder analog pressure gauge",
+    "Dense Counting": "dense object counting overlapping items birds in flight shelf stock audit",
+    "Axis Ticks & Values": "logarithmic scale plot axis tick labels fine grid line precision chart",
+    "Geometric Quantities": "visual angle estimation relative length proportion area ratio diagram",
+    "OCR Numerical Values": "scanned invoice numbers handwritten digit display blurred digital font",
+    "Engineering Schematics": "professional engineering schematic circuit diagram blueprint mechanical cross-section",
+    "Medical & Anatomy": "medical imaging MRI CT scan histological slide anatomical diagram pathology",
+    "Business & Finance": "candlestick chart financial statement snapshot market trend infographic balance sheet",
+    "Physics & Chemistry": "molecular structure physics vector diagram thermodynamics cyclic chemical reaction setup",
+    "Arts & Humanities": "musical notation art analysis diagram linguistic tree map historical cartography",
+    "CS & IT": "UML class diagram neural network architecture state transition diagram data structure",
+    "Ultra-high-res Schematics": "professional high-resolution technical schematic integrated circuit layout detailed blueprint",
+    "Clinical Medical Imaging": "unlabeled clinical radiology X-ray ultrasound pathology slide expert diagnosis",
+    "Advanced Theoretical Diagrams": "complex analysis mapping quantum mechanics energy level spacetime curvature visualization",
+    "Visual-only Logic Matrices": "complex non-verbal reasoning matrix visual pattern induction abstract logic puzzle",
+    "Interdisciplinary Composite Charts": "multidisciplinary composite chart economic model with statistical overlay signal processing",
+    "Classic Visual Illusions": "classic optical illusion Müller-Lyer arrows Ebbinghaus circles size perception",
+    "Geometric Traps": "deceptive geometric diagram parallel line illusion perceptual bias shapes",
+    "Manipulated Charts": "manipulated bar chart misleading axis labels counter-intuitive data visualization",
+    "Semantic Co-occurrence Traps": "semantic anomaly in real scene illogical object co-occurrence unusual camera angle",
+    "Misleading Maps & Symbols": "modified world map inverted orientation non-standard symbolic representation"
+} -%}
+
+{%- set selected_key = (image_data_queries.keys() | list) | random -%}
+{%- set selected_focus = image_data_queries[selected_key] -%}
+
+You are an AI Data Engineer. Your task is to generate a **unique and concise** image retrieval query.
+
+### Target Category: {{ selected_key }}
+
+**Focus on:** {{ selected_focus }}
+
+### Diversity Requirements:
+**Vary the Subject**: Do not use common examples. Explore different specific objects within the focus area.
+
+Output Format:
+<type>{{ selected_key }}</type>
+<query>[Concise description emphasizing structure and key markers based on the focus keywords]</query>
+
+### Example (Reference only, DO NOT COY):
+<type>{{ selected_key }}</type>
+<query>{{ selected_focus }}</query>

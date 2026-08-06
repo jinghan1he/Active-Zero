@@ -1,0 +1,5 @@
+{{ content | trim }}
+{% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" -%}
+{% for option in options -%}
+{{ letters[loop.index0] }}. {{ option }}
+{% endfor -%}
