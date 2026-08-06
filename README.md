@@ -495,40 +495,6 @@ Build the FAISS index from the same final row order and point `SOURCE_DATASET` a
 
 Training/evaluation datasets consumed directly by EasyR1 use the same `problem`, `images`, and `answer` columns, but `answer` contains the actual ground-truth answer rather than an image row ID.
 
-## Troubleshooting
-
-### A role server does not respond
-
-Inspect the service logs under `$STORAGE_PATH/logs/vllm_server/`, confirm that ports `5000`–`7007` are reachable, and verify that `VLLM_HOST` is correct. The launchers use file paths in HTTP requests, so the service and caller must share the same filesystem.
-
-### Ray tasks remain pending
-
-Run `ray status` and compare available GPU resources with `num_workers`, `num_nodes`, `trainer.nnodes`, and `trainer.n_gpus_per_node`. The defaults target an 8-GPU-per-node cluster.
-
-### CUDA out of memory
-
-Reduce `worker.rollout.gpu_memory_utilization`, rollout/mini-batch sizes, `max_pixels`, or `max_response_length`. Parameter and optimizer offloading are configured under `worker.actor.offload` in `train_examples/config.yaml`.
-
-### Image features and image tokens do not match
-
-Increase `data.max_prompt_length` or reduce `data.max_pixels` in `train_examples/config.yaml` and the matching generation scripts.
-
-### The retriever returns incorrect images
-
-Rebuild the FAISS index after any source dataset change. `INDEX_PATH` and `SOURCE_DATASET` must use identical row ordering, and every source row's `answer` must equal its row index.
-
-### A stage is skipped unexpectedly
-
-Stage completion is detected by the existence of a merged checkpoint such as `global_step_10/actor/huggingface` or `global_step_30/actor/huggingface`. Use a new experiment name or inspect the existing checkpoint directory.
-
-## Current research-code notes
-
-- Several preprocessing and training files retain `/path/to/...` paths and must be adapted to your filesystem.
-- Server launchers call `pkill -f` for existing Questioner/Solver service processes and assume exclusive use of the node.
-- `selfplay/main.sh` contains a duplicated Solver command in the iteration loop; correct that invocation before using the GRPO orchestration path.
-- `Evaluation/eval_boxed_accuracy.py` currently has a duplicate third value in the `HallusionBench` dataset mapping; remove that duplicate path before running aggregate scoring.
-- Generated outputs and evaluation datasets are ignored by Git; keep independent backups of important experiment artifacts.
-
 ## Acknowledgements
 
 Active-Zero builds on the training infrastructure of [EasyR1](https://github.com/hiyouga/EasyR1) and [veRL](https://github.com/volcengine/verl). It also relies on vLLM, Ray, Hugging Face Transformers/Datasets, SigLIP2, and FAISS. We thank the authors and maintainers of these projects and the public datasets used by the data preparation scripts.
